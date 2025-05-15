@@ -27,14 +27,14 @@ export const spans: { [key: string]: { display: string } } = {
 };
 
 export const rangeOptions: ITimeOption[] = [
-  { start: 'now-1m', end: 'now', display: 'Last 1 minute' },
-  { start: 'now-2m', end: 'now', display: 'Last 2 minutes' },
-  { start: 'now-3m', end: 'now', display: 'Last 3 minutes' },
+  // { start: 'now-1m', end: 'now', display: 'Last 1 minute' },
+  // { start: 'now-2m', end: 'now', display: 'Last 2 minutes' },
+  // { start: 'now-3m', end: 'now', display: 'Last 3 minutes' },
   { start: 'now-5m', end: 'now', display: 'Last 5 minutes' },
   { start: 'now-15m', end: 'now', display: 'Last 15 minutes' },
   { start: 'now-30m', end: 'now', display: 'Last 30 minutes' },
   { start: 'now-1h', end: 'now', display: 'Last 1 hour' },
-  { start: 'now-3h', end: 'now', display: 'Last 3 hours' },
+  // { start: 'now-3h', end: 'now', display: 'Last 3 hours' },
   { start: 'now-6h', end: 'now', display: 'Last 6 hours' },
   { start: 'now-12h', end: 'now', display: 'Last 12 hours' },
   { start: 'now-24h', end: 'now', display: 'Last 24 hours' },
@@ -61,21 +61,6 @@ export const momentLocaleZhCN = {
   weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
   weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
   weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
-  relativeTime: {
-    future: '%s 内',
-    past: '%s 前',
-    s: '几秒',
-    m: '1 分',
-    mm: '%d 分',
-    h: '1 小时',
-    hh: '%d 小时',
-    d: '1 天',
-    dd: '%d 天',
-    M: '1 个月',
-    MM: '%d 个月',
-    y: '1 年',
-    yy: '%d 年',
-  },
 };
 
 export const units: TDurationUnit[] = ['y', 'M', 'w', 'd', 'h', 'm', 's', 'Q'];

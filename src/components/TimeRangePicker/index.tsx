@@ -19,9 +19,6 @@
  * 时间范围默认值：如果开启了本地缓存，需要调用 getDefaultValue(localKey: string, defaultValue: IRawTimeRange) 来获取真实的默认值
  */
 import React from 'react';
-
-import { getTimeZoneInfo } from '@/utils/datetime/timezones';
-
 import TimeRangePicker from './TimeRangePicker';
 import { IRawTimeRange } from './types';
 import TimeRangePickerWithRefresh from './TimeRangePickerWithRefresh';
@@ -31,14 +28,16 @@ import { mapOptionToRelativeTimeRange, mapRelativeTimeRangeToOption } from './Re
 import RelativeTimeRangePicker from './RelativeTimeRangePicker';
 import AutoRefresh from './AutoRefresh';
 import './locale';
-
+import { useGlobalVar } from '@/utils/useHook';
 export { AutoRefresh };
+import moment from 'moment';
 
 export default function index(props: ITimeRangePickerProps) {
   const { localKey, dateFormat = 'YYYY-MM-DD HH:mm', onChange } = props;
-
+  const [globalVar] = useGlobalVar();
   return (
     <TimeRangePicker
+      limitHour={globalVar.RangePickerHour ? Number(globalVar.RangePickerHour) : undefined}
       {...props}
       onChange={(val) => {
         if (localKey) {
@@ -65,7 +64,14 @@ export function getDefaultValue(localKey: string, defaultValue?: IRawTimeRange) 
   const localeValue = localStorage.getItem(localKey);
   if (localeValue) {
     try {
-      return JSON.parse(localeValue);
+      const parseValue = JSON.parse(localeValue);
+      if (typeof parseValue.start === 'number' && typeof parseValue.end === 'number') {
+        return {
+          start: moment(parseValue.start),
+          end: moment(parseValue.end),
+        };
+      }
+      return parseValue;
     } catch (e) {
       return defaultValue;
     }

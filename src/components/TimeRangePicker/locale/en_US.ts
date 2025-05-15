@@ -48,6 +48,5 @@ const en_US = {
   },
   last: 'Last',
   next: 'Next',
-  close: 'Close',
 };
 export default en_US;

@@ -15,7 +15,7 @@
  *
  */
 import { Moment } from 'moment';
-
+import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 export type TDurationUnit =
   | 'year'
   | 'years'
@@ -59,6 +59,8 @@ export interface IRawTimeRange {
 }
 
 export interface ITimeRangePickerProps {
+  noBorder?: boolean;
+  limitHour?: number;
   style?: object;
   localKey?: string;
   value?: IRawTimeRange;
@@ -68,11 +70,10 @@ export interface ITimeRangePickerProps {
   allowClear?: boolean;
   onClear?: () => void;
   label?: React.ReactElement;
+  extraFooter?: (fn: Function) => React.ReactElement;
   disabled?: boolean;
+  size?: SizeType;
   ajustTimeOptions?: (options: ITimeOption[]) => ITimeOption[];
-  showTimezone?: boolean;
-  timezone?: string;
-  onTimezoneChange?: (value: string) => void;
 }
 
 export interface ITimeRangePickerWithRefreshProps extends ITimeRangePickerProps {

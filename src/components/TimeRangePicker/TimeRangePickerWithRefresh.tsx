@@ -21,10 +21,10 @@ import AutoRefresh from './AutoRefresh';
 import TimeRangePicker from './TimeRangePicker';
 import { ITimeRangePickerWithRefreshProps } from './types';
 import { valueAsString } from './utils';
-
+import { useGlobalVar } from '@/utils/useHook';
 export default function TimeRangePickerWithRefresh(props: ITimeRangePickerWithRefreshProps) {
   const { value, onChange, style, refreshTooltip, dateFormat = 'YYYY-MM-DD HH:mm', localKey } = props;
-
+  const [globalVar] = useGlobalVar();
   return (
     <Space style={style}>
       <AutoRefresh
@@ -42,6 +42,7 @@ export default function TimeRangePickerWithRefresh(props: ITimeRangePickerWithRe
         onIntervalSecondsChange={props.onIntervalSecondsChange}
       />
       <TimeRangePicker
+        limitHour={globalVar.RangePickerHour ? Number(globalVar.RangePickerHour) : undefined}
         {..._.omit(props, ['style'])}
         onChange={(val) => {
           if (localKey) {
